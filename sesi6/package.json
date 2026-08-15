@@ -1,0 +1,31 @@
+{
+  "name": "belajar-bareng-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:report-all": "mocha tests --reporter mochawesome",
+    "test:report-practice": "mocha tests/practice/ --reporter mochawesome",
+    "test:report-homework": "mocha tests/homework/ --reporter mochawesome",
+    "test:all": "npx mocha tests",
+    "test:practice": "npx mocha tests/practice/",
+    "test:homework": "npx mocha tests/homework/"
+  },
+  "keywords": [
+    "ez-test",
+    "belajar-bareng",
+    "qa",
+    "test-report"
+  ],
+  "author": "Ghifari Ezra Ramadhan",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "mocha": "^11.8.0",
+    "mochawesome": "^8.0.1"
+  },
+  "devDependencies": {
+    "chai": "^6.2.2"
+  }
+}

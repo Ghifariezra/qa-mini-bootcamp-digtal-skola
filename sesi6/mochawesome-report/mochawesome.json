@@ -1,0 +1,1195 @@
+{
+  "stats": {
+    "suites": 16,
+    "tests": 23,
+    "passes": 11,
+    "pending": 0,
+    "failures": 12,
+    "start": "2026-08-15T13:18:04.784Z",
+    "end": "2026-08-15T13:18:09.610Z",
+    "duration": 4826,
+    "testsRegistered": 31,
+    "passPercent": 35.483870967741936,
+    "pendingPercent": 0,
+    "other": 1,
+    "hasOther": true,
+    "skipped": 8,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "d76b4568-2a1f-43b5-abaa-6a85f7fb2431",
+      "title": "",
+      "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+      "file": "\\tests\\homework\\main.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "82d6ac20-0031-4a35-95b3-f680e4be178b",
+          "title": "Global Setup & Wakeup",
+          "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+          "file": "\\tests\\homework\\main.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Global Setup & Wakeup\"",
+              "fullTitle": "Global Setup & Wakeup \"before all\" hook in \"Global Setup & Wakeup\"",
+              "timedOut": false,
+              "duration": 577,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this._BaseURL = \"https://belajar-bareng.onrender.com\"\nthis.MAX_ALLOWED_REQUESTS = 5;\nthis.api = new BelajarBarengAPI(this._BaseURL);\nthis.ajv = new Ajv({ allErrors: true });\nthis.token = null;\ntry {\n    await fetch(this._BaseURL);\n} catch (error) {\n    throw new Error(\"Failed to wake up the server. Please check the server status.\");\n}",
+              "err": {},
+              "uuid": "4f46ae89-b461-4260-8a2a-0fcbe6105dab",
+              "parentUUID": "82d6ac20-0031-4a35-95b3-f680e4be178b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "491fdfad-9493-4b9f-9633-dac908eb6389",
+              "title": "POST /api/login",
+              "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+              "file": "\\tests\\homework\\main.test.js",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"POST /api/login\"",
+                  "fullTitle": "Global Setup & Wakeup POST /api/login \"before all\" hook in \"POST /api/login\"",
+                  "timedOut": false,
+                  "duration": 566,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const [validResponse, invalidResponse, missingFieldsResponse, sqlInjectionResponse, xssAttackResponse] = await Promise.all([\n    this.api.login(loginData.validBody),\n    this.api.login(loginData.invalidBody),\n    this.api.login(loginData.missingFieldsBody),\n    this.api.login(loginData.sqlInjectionBody),\n    this.api.login(loginData.xssAttackBody)\n]);\nthis.response = validResponse;\nthis.invalidResponse = invalidResponse;\nthis.missingFieldsResponse = missingFieldsResponse;\nthis.sqlInjectionResponse = sqlInjectionResponse;\nthis.xssAttackResponse = xssAttackResponse;",
+                  "err": {},
+                  "uuid": "c0aa5581-3206-4cad-b977-be8e3bb6aa1d",
+                  "parentUUID": "491fdfad-9493-4b9f-9633-dac908eb6389",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "18e27428-858e-41b7-a453-1689f199172d",
+                  "title": "Verify user can successfully login with valid credentials",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate response against schema",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify user can successfully login with valid credentials should validate response against schema",
+                      "timedOut": false,
+                      "duration": 26,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(loginSchema);\nconst isValid = validate(this.response.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {},
+                      "uuid": "b0e87513-0046-48e8-a2a9-95f718e0ee9a",
+                      "parentUUID": "18e27428-858e-41b7-a453-1689f199172d",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify user can successfully login with valid credentials should return valid body response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.response.status, 200);\nassert.ok(this.response.data.token !== undefined && this.response.data.token !== null);\nassert.strictEqual(this.response.data.message, \"Login successful\");\n// Simpan Token\nthis.token = this.response.data.token;",
+                      "err": {},
+                      "uuid": "659ecd6c-0bfa-4137-a6f2-0a44fe9c8921",
+                      "parentUUID": "18e27428-858e-41b7-a453-1689f199172d",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "b0e87513-0046-48e8-a2a9-95f718e0ee9a",
+                    "659ecd6c-0bfa-4137-a6f2-0a44fe9c8921"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 26,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "b2aaf03a-4932-443a-822f-68f90dbce2e8",
+                  "title": "Verify API Response Headers Policy",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should return correct Content-Type as application/json",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify API Response Headers Policy should return correct Content-Type as application/json",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const contentType = this.response.headers.get(\"content-type\");\nassert.ok(contentType !== undefined, \"Content-Type header is missing\");\nexpect(contentType).to.include(\"application/json\");",
+                      "err": {},
+                      "uuid": "2502611d-ac67-471a-a20b-a9a24d3fabad",
+                      "parentUUID": "b2aaf03a-4932-443a-822f-68f90dbce2e8",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should not expose server technology (X-Powered-By is hidden)",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify API Response Headers Policy should not expose server technology (X-Powered-By is hidden)",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "const poweredBy = this.response.headers.get(\"x-powered-by\");\nexpect(poweredBy).to.be.oneOf([undefined, null]);",
+                      "err": {
+                        "message": "AssertionError: expected 'Express' to be one of [ undefined, null ]",
+                        "estack": "AssertionError: expected 'Express' to be one of [ undefined, null ]\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/login.test.js:61:41)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": null
+                      },
+                      "uuid": "1a03bc48-35f7-4399-9363-93db68fe13ad",
+                      "parentUUID": "b2aaf03a-4932-443a-822f-68f90dbce2e8",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should not expose cloud hosting infrastructure (X-Render-Origin-Server is hidden)",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify API Response Headers Policy should not expose cloud hosting infrastructure (X-Render-Origin-Server is hidden)",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "const renderServer = this.response.headers.get(\"x-render-origin-server\");\nexpect(renderServer).to.be.oneOf([undefined, null]);",
+                      "err": {
+                        "message": "AssertionError: expected 'Render' to be one of [ undefined, null ]",
+                        "estack": "AssertionError: expected 'Render' to be one of [ undefined, null ]\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/login.test.js:66:44)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": null
+                      },
+                      "uuid": "503d9835-455a-45ac-a62d-08cce3eb9456",
+                      "parentUUID": "b2aaf03a-4932-443a-822f-68f90dbce2e8",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should restrict Access-Control-Allow-Origin from wildcard (*)",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify API Response Headers Policy should restrict Access-Control-Allow-Origin from wildcard (*)",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "const allowOrigin = this.response.headers.get(\"access-control-allow-origin\");\nexpect(allowOrigin).to.not.equal(\"*\", \"Security Risk: Access-Control-Allow-Origin should not allow wildcard '*'\");",
+                      "err": {
+                        "message": "AssertionError: Security Risk: Access-Control-Allow-Origin should not allow wildcard '*': expected '*' to not equal '*'",
+                        "estack": "AssertionError: Security Risk: Access-Control-Allow-Origin should not allow wildcard '*': expected '*' to not equal '*'\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/login.test.js:71:44)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": ""
+                      },
+                      "uuid": "25cb58a0-779f-4ae6-b10d-6822d3414118",
+                      "parentUUID": "b2aaf03a-4932-443a-822f-68f90dbce2e8",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should include X-Content-Type-Options header set to nosniff",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify API Response Headers Policy should include X-Content-Type-Options header set to nosniff",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "const contentTypeOptions = this.response.headers.get(\"x-content-type-options\");\nexpect(contentTypeOptions).to.equal(\"nosniff\", \"Security Risk: Missing X-Content-Type-Options header\");",
+                      "err": {
+                        "message": "AssertionError: Security Risk: Missing X-Content-Type-Options header: expected null to equal 'nosniff'",
+                        "estack": "AssertionError: Security Risk: Missing X-Content-Type-Options header: expected null to equal 'nosniff'\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/login.test.js:76:47)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": null
+                      },
+                      "uuid": "abaee254-132b-45d7-9638-c38484d38a16",
+                      "parentUUID": "b2aaf03a-4932-443a-822f-68f90dbce2e8",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "2502611d-ac67-471a-a20b-a9a24d3fabad"
+                  ],
+                  "failures": [
+                    "1a03bc48-35f7-4399-9363-93db68fe13ad",
+                    "503d9835-455a-45ac-a62d-08cce3eb9456",
+                    "25cb58a0-779f-4ae6-b10d-6822d3414118",
+                    "abaee254-132b-45d7-9638-c38484d38a16"
+                  ],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 3,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "4b096b1a-9d60-4df1-8d2b-e7a1dc998068",
+                  "title": "Verify system rejects login with invalid credentials",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate invalid response against schema",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system rejects login with invalid credentials should validate invalid response against schema",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(invalidLoginSchema);\nconst isValid = validate(this.invalidResponse.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {},
+                      "uuid": "3656d2e9-dc92-452d-88e8-d5f62941990d",
+                      "parentUUID": "4b096b1a-9d60-4df1-8d2b-e7a1dc998068",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should return error for invalid credentials",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system rejects login with invalid credentials should return error for invalid credentials",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.invalidResponse.status, 401);\nassert.strictEqual(this.invalidResponse.data.message, \"Invalid username or password!\");",
+                      "err": {},
+                      "uuid": "01fbe101-c207-43aa-9750-950923a1d5b2",
+                      "parentUUID": "4b096b1a-9d60-4df1-8d2b-e7a1dc998068",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "3656d2e9-dc92-452d-88e8-d5f62941990d",
+                    "01fbe101-c207-43aa-9750-950923a1d5b2"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 1,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "c6bebe8f-dbbd-43d1-a2a6-fceee2622100",
+                  "title": "Verify system enforces rate limiting after multiple consecutive login attempts",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [
+                    {
+                      "title": "\"before all\" hook in \"Verify system enforces rate limiting after multiple consecutive login attempts\"",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system enforces rate limiting after multiple consecutive login attempts \"before all\" hook in \"Verify system enforces rate limiting after multiple consecutive login attempts\"",
+                      "timedOut": false,
+                      "duration": 596,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const burstRequests = [];\nconst limitToTrigger = this.MAX_ALLOWED_REQUESTS + 1;\nfor (let i = 0; i < limitToTrigger; i++) {\n    burstRequests.push(this.api.login(loginData.invalidBody));\n}\nconst responses = await Promise.all(burstRequests);\nthis.rateLimitResponse = responses[responses.length - 1];",
+                      "err": {},
+                      "uuid": "862d63e3-15ae-4b30-85cb-b5e7c8bc05b5",
+                      "parentUUID": "c6bebe8f-dbbd-43d1-a2a6-fceee2622100",
+                      "isHook": true,
+                      "skipped": false
+                    }
+                  ],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should return status code 429 Too Many Requests",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system enforces rate limiting after multiple consecutive login attempts should return status code 429 Too Many Requests",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.rateLimitResponse.status, 429);",
+                      "err": {
+                        "message": "AssertionError: Expected values to be strictly equal:\n\n401 !== 429\n",
+                        "estack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n401 !== 429\n\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/login.test.js:112:24)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": "- 401\n+ 429\n"
+                      },
+                      "uuid": "ebd4071b-2ec1-4c60-94f9-ffd9f7baa86f",
+                      "parentUUID": "c6bebe8f-dbbd-43d1-a2a6-fceee2622100",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should return rate limit error message",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system enforces rate limiting after multiple consecutive login attempts should return rate limit error message",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.rateLimitResponse.data.message, \"Too many requests, please try again later.\");",
+                      "err": {
+                        "message": "AssertionError: Expected values to be strictly equal:\nactual expected\n\n'InvToo malidny requests, plernamse otry passwogain laterd!.'\n",
+                        "estack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\nactual expected\n\n'InvToo malidny requests, plernamse otry passwogain laterd!.'\n\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/login.test.js:116:24)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": "- Invalid username or password!\n+ Too many requests, please try again later.\n"
+                      },
+                      "uuid": "4b361df3-a699-4a2f-91a5-83d7bdbf212f",
+                      "parentUUID": "c6bebe8f-dbbd-43d1-a2a6-fceee2622100",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [],
+                  "failures": [
+                    "ebd4071b-2ec1-4c60-94f9-ffd9f7baa86f",
+                    "4b361df3-a699-4a2f-91a5-83d7bdbf212f"
+                  ],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 2,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "070891c8-84aa-4736-8c27-e4a38b202072",
+                  "title": "Verify system prevents SQL injection vulnerabilities on login endpoint",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate SQL injection response against invalid login schema",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system prevents SQL injection vulnerabilities on login endpoint should validate SQL injection response against invalid login schema",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(invalidLoginSchema);\nconst isValid = validate(this.sqlInjectionResponse.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {},
+                      "uuid": "70ceabdb-c53c-421f-b4df-f2bd991e6381",
+                      "parentUUID": "070891c8-84aa-4736-8c27-e4a38b202072",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should return 401 error, not 500 or 200, confirming injection is safely blocked",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system prevents SQL injection vulnerabilities on login endpoint should return 401 error, not 500 or 200, confirming injection is safely blocked",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.sqlInjectionResponse.status, 401, \"Expected 401, but got a different status. System might be vulnerable!\");\nassert.strictEqual(this.sqlInjectionResponse.data.message, \"Invalid username or password!\");",
+                      "err": {},
+                      "uuid": "d1728f41-e39e-47f1-822d-6bb68265eb6e",
+                      "parentUUID": "070891c8-84aa-4736-8c27-e4a38b202072",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "70ceabdb-c53c-421f-b4df-f2bd991e6381",
+                    "d1728f41-e39e-47f1-822d-6bb68265eb6e"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "277edee2-871e-48a2-a0f5-c958032f91e8",
+                  "title": "Verify system sanitizes input against Cross-Site Scripting (XSS) payloads",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate XSS response against invalid login schema",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system sanitizes input against Cross-Site Scripting (XSS) payloads should validate XSS response against invalid login schema",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(invalidLoginSchema);\nconst isValid = validate(this.xssAttackResponse.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {},
+                      "uuid": "1f0cf2f8-b448-4860-9e47-3d3730b159b9",
+                      "parentUUID": "277edee2-871e-48a2-a0f5-c958032f91e8",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should reject XSS payload with 401 status and not reflect script in response",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system sanitizes input against Cross-Site Scripting (XSS) payloads should reject XSS payload with 401 status and not reflect script in response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.xssAttackResponse.status, 401, \"Expected 401, but system did not reject properly!\");\nconst responseBodyString = JSON.stringify(this.xssAttackResponse.data);\nexpect(responseBodyString).to.not.include(\"<script>\", \"Security Risk: XSS payload reflected in response body!\");",
+                      "err": {},
+                      "uuid": "c2972e9b-b4af-461f-a7aa-d3ae94dd1123",
+                      "parentUUID": "277edee2-871e-48a2-a0f5-c958032f91e8",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "1f0cf2f8-b448-4860-9e47-3d3730b159b9",
+                    "c2972e9b-b4af-461f-a7aa-d3ae94dd1123"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "a5c8b39c-44aa-4021-a38a-fee77e759cd4",
+                  "title": "Verify system handles missing required fields during login",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate missing fields response against schema",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system handles missing required fields during login should validate missing fields response against schema",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(invalidLoginSchema);\nconst isValid = validate(this.missingFieldsResponse.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {},
+                      "uuid": "d00e3db4-9a9a-44a4-8fa7-ab61b1ae07d8",
+                      "parentUUID": "a5c8b39c-44aa-4021-a38a-fee77e759cd4",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should return error for missing fields",
+                      "fullTitle": "Global Setup & Wakeup POST /api/login Verify system handles missing required fields during login should return error for missing fields",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.missingFieldsResponse.status, 400);\nassert.strictEqual(this.missingFieldsResponse.data.message, \"Missing required fields\");",
+                      "err": {
+                        "message": "AssertionError: Expected values to be strictly equal:\nactual expected\n\n'UMisername or password isng required fields'\n",
+                        "estack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\nactual expected\n\n'UMisername or password isng required fields'\n\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/login.test.js:167:24)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": "- Username or password is required\n+ Missing required fields\n"
+                      },
+                      "uuid": "7c0d24f4-ad9a-4d64-b50e-3e1dfbc8a251",
+                      "parentUUID": "a5c8b39c-44aa-4021-a38a-fee77e759cd4",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "d00e3db4-9a9a-44a4-8fa7-ab61b1ae07d8"
+                  ],
+                  "failures": [
+                    "7c0d24f4-ad9a-4d64-b50e-3e1dfbc8a251"
+                  ],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "064c45d2-0d1a-41d6-a52a-a45855d093f2",
+              "title": "GET /api/users",
+              "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+              "file": "\\tests\\homework\\main.test.js",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"GET /api/users\"",
+                  "fullTitle": "Global Setup & Wakeup GET /api/users \"before all\" hook in \"GET /api/users\"",
+                  "timedOut": true,
+                  "duration": 2014,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const loginResponse = await this.api.login(loginData.validBody);\nthis.userToken = loginResponse.data.token;\nconst [getUserResponse, getUndefinedTokenUserResponse, getInvalidTokenUserResponse, getExpiredTokenUserResponse] = await Promise.all([\n    this.api.getUser(this.userToken),\n    this.api.getUser(),\n    this.api.getUser(\"invalidToken123\"),\n    this.api.getUser(loginData.expiredToken)\n]);\nthis.response = getUserResponse;\nthis.undefined = getUndefinedTokenUserResponse;\nthis.invalid = getInvalidTokenUserResponse;\nthis.expired = getExpiredTokenUserResponse;",
+                  "err": {
+                    "message": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js)",
+                    "estack": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js)\n    at listOnTimeout (node:internal/timers:608:17)\n    at process.processTimers (node:internal/timers:543:7)",
+                    "diff": null
+                  },
+                  "uuid": "3f3fa118-4162-42d4-b897-be72fe8cb510",
+                  "parentUUID": "064c45d2-0d1a-41d6-a52a-a45855d093f2",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "dc94ea3d-624d-414d-a38d-078a4fbf0a4b",
+                  "title": "Verify user can retrieve user list/information with a valid token",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate response against schema",
+                      "fullTitle": "Global Setup & Wakeup GET /api/users Verify user can retrieve user list/information with a valid token should validate response against schema",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(getUserSchema);\nconst isValid = validate(this.response.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {},
+                      "uuid": "f3b573b4-93cd-48d7-a77d-fae8a86af8b1",
+                      "parentUUID": null,
+                      "isHook": false,
+                      "skipped": true
+                    },
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup GET /api/users Verify user can retrieve user list/information with a valid token should return valid body response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.response.status, 200);\nusersData.validData.forEach((user) => {\n    const foundUser = this.response.data.users.find(u => u.userId === user.userId);\n    assert.ok(foundUser, `User with userId ${user.userId} not found in response`);\n    expect(foundUser).to.deep.equal(user);\n});",
+                      "err": {},
+                      "uuid": "9ab59e1d-b797-4c0a-a7d7-cba9cf236d39",
+                      "parentUUID": null,
+                      "isHook": false,
+                      "skipped": true
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [
+                    "f3b573b4-93cd-48d7-a77d-fae8a86af8b1",
+                    "9ab59e1d-b797-4c0a-a7d7-cba9cf236d39"
+                  ],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "451616e2-8586-430d-82dc-c5f61ef0a32d",
+                  "title": "Verify system rejects user list retrieval when authorization token is missing",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate response against schema",
+                      "fullTitle": "Global Setup & Wakeup GET /api/users Verify system rejects user list retrieval when authorization token is missing should validate response against schema",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(invalidTokenSchema);\nconst isValid = validate(this.undefined.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {},
+                      "uuid": "b288c0cb-ce56-4f33-bbac-05187eb3cbdd",
+                      "parentUUID": null,
+                      "isHook": false,
+                      "skipped": true
+                    },
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup GET /api/users Verify system rejects user list retrieval when authorization token is missing should return valid body response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.undefined.status, 401);\nassert.strictEqual(this.undefined.data.message, \"Token required!\");",
+                      "err": {},
+                      "uuid": "cce1bd70-8c93-411d-93fc-cde050d77af9",
+                      "parentUUID": null,
+                      "isHook": false,
+                      "skipped": true
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [
+                    "b288c0cb-ce56-4f33-bbac-05187eb3cbdd",
+                    "cce1bd70-8c93-411d-93fc-cde050d77af9"
+                  ],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "07f9fdb3-6ccf-4b1d-a337-a026a49f2076",
+                  "title": "Verify system rejects user list retrieval when authorization token is invalid",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate response against schema",
+                      "fullTitle": "Global Setup & Wakeup GET /api/users Verify system rejects user list retrieval when authorization token is invalid should validate response against schema",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(invalidTokenSchema);\nconst isValid = validate(this.invalid.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {},
+                      "uuid": "741e500d-b720-48c6-a945-45db71df82e2",
+                      "parentUUID": null,
+                      "isHook": false,
+                      "skipped": true
+                    },
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup GET /api/users Verify system rejects user list retrieval when authorization token is invalid should return valid body response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.invalid.status, 403);\nassert.strictEqual(this.invalid.data.message, \"Invalid or expired token, please login!\");",
+                      "err": {},
+                      "uuid": "95c3de64-1df3-45d8-82bf-245ef0aae5b2",
+                      "parentUUID": null,
+                      "isHook": false,
+                      "skipped": true
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [
+                    "741e500d-b720-48c6-a945-45db71df82e2",
+                    "95c3de64-1df3-45d8-82bf-245ef0aae5b2"
+                  ],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "49149403-f494-468c-bef5-71d6abd90cdb",
+                  "title": "Verify system rejects user list retrieval when authorization token is expired",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate response against schema",
+                      "fullTitle": "Global Setup & Wakeup GET /api/users Verify system rejects user list retrieval when authorization token is expired should validate response against schema",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(invalidTokenSchema);\nconst isValid = validate(this.expired.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {},
+                      "uuid": "128d72d9-8be9-4de9-94b8-e81125e86f1a",
+                      "parentUUID": null,
+                      "isHook": false,
+                      "skipped": true
+                    },
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup GET /api/users Verify system rejects user list retrieval when authorization token is expired should return valid body response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": null,
+                      "speed": null,
+                      "pass": false,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.expired.status, 403);\nassert.strictEqual(this.expired.data.message, \"Invalid or expired token, please login!\");",
+                      "err": {},
+                      "uuid": "355ea0c0-5697-47d4-b8ab-44ad568c7a9a",
+                      "parentUUID": null,
+                      "isHook": false,
+                      "skipped": true
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [
+                    "128d72d9-8be9-4de9-94b8-e81125e86f1a",
+                    "355ea0c0-5697-47d4-b8ab-44ad568c7a9a"
+                  ],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "3fe7d8f5-ff72-47ce-8021-7fd6d1504b59",
+              "title": "POST /api/add-user",
+              "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+              "file": "\\tests\\homework\\main.test.js",
+              "beforeHooks": [
+                {
+                  "title": "\"before all\" hook in \"POST /api/add-user\"",
+                  "fullTitle": "Global Setup & Wakeup POST /api/add-user \"before all\" hook in \"POST /api/add-user\"",
+                  "timedOut": false,
+                  "duration": 1019,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const loginResponse = await this.api.login(loginData.validBody);\nthis.userToken = loginResponse.data.token;\nconst [getUserResponse, getInvalidResponse, getLessThanResponse, getMoreThanResponse] = await Promise.all([\n    this.api.addUser(usersData.addData.valid[0], this.userToken),\n    this.api.addUser(usersData.addData.invalid[0], this.userToken),\n    this.api.addUser(usersData.addData.withLengthMoreThen255[0], this.userToken),\n    this.api.addUser(usersData.addData.withLengthMoreThen256[0], this.userToken),\n]);\nthis.response = getUserResponse;\nthis.invalidResponse = getInvalidResponse;\nthis.lessThanResponse = getLessThanResponse;\nthis.moreThanResponse = getMoreThanResponse;",
+                  "err": {},
+                  "uuid": "21b4f9c2-7c10-409d-bc86-192f2722caed",
+                  "parentUUID": "3fe7d8f5-ff72-47ce-8021-7fd6d1504b59",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "70385725-0d30-4372-85bd-af4055103ad7",
+                  "title": "Verify system successfully creates a user and returns complete user data when valid payload is provided",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should validate response against schema",
+                      "fullTitle": "Global Setup & Wakeup POST /api/add-user Verify system successfully creates a user and returns complete user data when valid payload is provided should validate response against schema",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "const validate = this.ajv.compile(addUserSchema);\nconst isValid = validate(this.response.data);\nconst errorMessage = validate.errors ? JSON.stringify(validate.errors, null, 2) : null;\nexpect(isValid, errorMessage).to.be.true;",
+                      "err": {
+                        "message": "AssertionError: [\n  {\n    \"instancePath\": \"\",\n    \"schemaPath\": \"#/required\",\n    \"keyword\": \"required\",\n    \"params\": {\n      \"missingProperty\": \"userId\"\n    },\n    \"message\": \"must have required property 'userId'\"\n  },\n  {\n    \"instancePath\": \"\",\n    \"schemaPath\": \"#/required\",\n    \"keyword\": \"required\",\n    \"params\": {\n      \"missingProperty\": \"username\"\n    },\n    \"message\": \"must have required property 'username'\"\n  },\n  {\n    \"instancePath\": \"\",\n    \"schemaPath\": \"#/required\",\n    \"keyword\": \"required\",\n    \"params\": {\n      \"missingProperty\": \"age\"\n    },\n    \"message\": \"must have required property 'age'\"\n  }\n]: expected false to be true",
+                        "estack": "AssertionError: [\n  {\n    \"instancePath\": \"\",\n    \"schemaPath\": \"#/required\",\n    \"keyword\": \"required\",\n    \"params\": {\n      \"missingProperty\": \"userId\"\n    },\n    \"message\": \"must have required property 'userId'\"\n  },\n  {\n    \"instancePath\": \"\",\n    \"schemaPath\": \"#/required\",\n    \"keyword\": \"required\",\n    \"params\": {\n      \"missingProperty\": \"username\"\n    },\n    \"message\": \"must have required property 'username'\"\n  },\n  {\n    \"instancePath\": \"\",\n    \"schemaPath\": \"#/required\",\n    \"keyword\": \"required\",\n    \"params\": {\n      \"missingProperty\": \"age\"\n    },\n    \"message\": \"must have required property 'age'\"\n  }\n]: expected false to be true\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/add.users.test.js:53:52)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": "- false\n+ true\n"
+                      },
+                      "uuid": "c7faa2ff-afbb-4def-a2e7-0f9ce31fe944",
+                      "parentUUID": "70385725-0d30-4372-85bd-af4055103ad7",
+                      "isHook": false,
+                      "skipped": false
+                    },
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup POST /api/add-user Verify system successfully creates a user and returns complete user data when valid payload is provided should return valid body response",
+                      "timedOut": false,
+                      "duration": 1,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.response.status, 201);\nassert.strictEqual(this.response.data.message, `User successfully added, Hi ${this.response.data.username}!`);\nconst validData = usersData.addData.valid[0];\nassert.strictEqual(this.response.data.username, validData.username);\nassert.strictEqual(this.response.data.age, validData.age);",
+                      "err": {
+                        "message": "AssertionError: Expected values to be strictly equal:\n\n400 !== 201\n",
+                        "estack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n400 !== 201\n\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/add.users.test.js:57:24)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": "- 400\n+ 201\n"
+                      },
+                      "uuid": "f83b3032-aafe-429d-92d6-39c76b4f7398",
+                      "parentUUID": "70385725-0d30-4372-85bd-af4055103ad7",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [],
+                  "failures": [
+                    "c7faa2ff-afbb-4def-a2e7-0f9ce31fe944",
+                    "f83b3032-aafe-429d-92d6-39c76b4f7398"
+                  ],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 2,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "71b03d9b-37ab-4eb8-ae29-f755d630749d",
+                  "title": "Verify system rejects user creation when 'age' field is sent as a number instead of a string",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup POST /api/add-user Verify system rejects user creation when 'age' field is sent as a number instead of a string should return valid body response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.invalidResponse.status, 400);\nassert.strictEqual(this.invalidResponse.data.message, \"Invalid data type for 'age' field. Expected a string.\");",
+                      "err": {
+                        "message": "AssertionError: Expected values to be strictly equal:\n\n201 !== 400\n",
+                        "estack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n201 !== 400\n\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/add.users.test.js:68:24)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": "- 201\n+ 400\n"
+                      },
+                      "uuid": "de31effc-83a7-4b58-b0fc-fcdd6eab41aa",
+                      "parentUUID": "71b03d9b-37ab-4eb8-ae29-f755d630749d",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [],
+                  "failures": [
+                    "de31effc-83a7-4b58-b0fc-fcdd6eab41aa"
+                  ],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "b0522f9f-6833-4cf0-826b-67fa7205ff1d",
+                  "title": "Verify system rejects user creation when using an already existing username",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup POST /api/add-user Verify system rejects user creation when using an already existing username should return valid body response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.invalidResponse.status, 409);\nassert.strictEqual(this.invalidResponse.data.message, \"Username already exists.\");",
+                      "err": {
+                        "message": "AssertionError: Expected values to be strictly equal:\n\n201 !== 409\n",
+                        "estack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n201 !== 409\n\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/add.users.test.js:75:24)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": "- 201\n+ 409\n"
+                      },
+                      "uuid": "d3dfb32e-74ba-45ca-bdba-1f149ed12595",
+                      "parentUUID": "b0522f9f-6833-4cf0-826b-67fa7205ff1d",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [],
+                  "failures": [
+                    "d3dfb32e-74ba-45ca-bdba-1f149ed12595"
+                  ],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "d97973cd-321a-46dc-a3f7-23c6edaabed0",
+                  "title": "Verify system accepts user creation when username is exactly the maximum allowed length (255 characters)",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup POST /api/add-user Verify system accepts user creation when username is exactly the maximum allowed length (255 characters) should return valid body response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.lessThanResponse.status, 201);",
+                      "err": {},
+                      "uuid": "1171a894-35ed-4fba-be0a-a3e3ae0d5fbf",
+                      "parentUUID": "d97973cd-321a-46dc-a3f7-23c6edaabed0",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "1171a894-35ed-4fba-be0a-a3e3ae0d5fbf"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                },
+                {
+                  "uuid": "05dda99e-5ddd-4543-95b8-a4ab7a0168de",
+                  "title": "Verify system rejects user creation when username exceeds the maximum allowed length (256 characters)",
+                  "fullFile": "D:\\Course Learn\\Digital Skola\\QA\\sesi6\\tests\\homework\\main.test.js",
+                  "file": "\\tests\\homework\\main.test.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "should return valid body response",
+                      "fullTitle": "Global Setup & Wakeup POST /api/add-user Verify system rejects user creation when username exceeds the maximum allowed length (256 characters) should return valid body response",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "failed",
+                      "speed": null,
+                      "pass": false,
+                      "fail": true,
+                      "pending": false,
+                      "context": null,
+                      "code": "assert.strictEqual(this.moreThanResponse.status, 400);\nassert.strictEqual(this.moreThanResponse.data.message, \"Username must not exceed 255 characters.\");",
+                      "err": {
+                        "message": "AssertionError: Expected values to be strictly equal:\n\n201 !== 400\n",
+                        "estack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n201 !== 400\n\n    at Context.<anonymous> (file:///D:/Course%20Learn/Digital%20Skola/QA/sesi6/tests/homework/modules/add.users.test.js:88:24)\n    at process.processImmediate (node:internal/timers:505:21)",
+                        "diff": "- 201\n+ 400\n"
+                      },
+                      "uuid": "f7a4f747-ca12-4094-b29d-da473c638b67",
+                      "parentUUID": "05dda99e-5ddd-4543-95b8-a4ab7a0168de",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [],
+                  "failures": [
+                    "f7a4f747-ca12-4094-b29d-da473c638b67"
+                  ],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 2000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.8.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "8.0.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}
