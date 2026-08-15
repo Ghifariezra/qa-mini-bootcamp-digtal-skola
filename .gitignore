@@ -1,0 +1,5 @@
+**/node_modules
+**/apache-jmeter-5.6.3
+**/apache-jmeter-5.6.3.*
+**/*.jmx
+**/*.jtl
