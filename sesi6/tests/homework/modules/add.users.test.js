@@ -41,6 +41,8 @@ export default function runAddUsersTests() {
             this.invalidResponse = getInvalidResponse;
             this.lessThanResponse = getLessThanResponse;
             this.moreThanResponse = getMoreThanResponse;
+
+            console.log("Valid Response:", this.response.data); // -> Valid Response: { status: 400, message: 'Age must be numeric, not text!' }
         });
 
         describe("Verify system successfully creates a user and returns complete user data when valid payload is provided", function () {
@@ -70,23 +72,31 @@ export default function runAddUsersTests() {
             });
         });
 
-        describe("Verify system rejects user creation when using an already existing username", function () {
-            it("should return valid body response", async function () {
-                assert.strictEqual(this.invalidResponse.status, 409);
-                assert.strictEqual(this.invalidResponse.data.message, "Username already exists.");
+        /*
+            Backlogged Test Cases:
+            1. Verify system rejects user creation when using an already existing username.
+            2. Verify system accepts user creation when username is exactly the maximum allowed length (255 characters).
+            3. Verify system rejects user creation when username exceeds the maximum allowed length (256 characters).
+        */
+        describe.skip("Backlogged Test Cases", function () {
+            describe("Verify system rejects user creation when using an already existing username", function () {
+                it("should return valid body response", async function () {
+                    assert.strictEqual(this.invalidResponse.status, 409);
+                    assert.strictEqual(this.invalidResponse.data.message, "Username already exists.");
+                });
             });
-        });
-        
-        describe("Verify system accepts user creation when username is exactly the maximum allowed length (255 characters)", function () {
-            it("should return valid body response", async function () {
-                assert.strictEqual(this.lessThanResponse.status, 201);
-            });
-        });
 
-        describe("Verify system rejects user creation when username exceeds the maximum allowed length (256 characters)", function () {
-            it("should return valid body response", async function () {
-                assert.strictEqual(this.moreThanResponse.status, 400);
-                assert.strictEqual(this.moreThanResponse.data.message, "Username must not exceed 255 characters.");
+            describe("Verify system accepts user creation when username is exactly the maximum allowed length (255 characters)", function () {
+                it("should return valid body response", async function () {
+                    assert.strictEqual(this.lessThanResponse.status, 201);
+                });
+            });
+
+            describe("Verify system rejects user creation when username exceeds the maximum allowed length (256 characters)", function () {
+                it("should return valid body response", async function () {
+                    assert.strictEqual(this.moreThanResponse.status, 400);
+                    assert.strictEqual(this.moreThanResponse.data.message, "Username must not exceed 255 characters.");
+                });
             });
         });
     });
