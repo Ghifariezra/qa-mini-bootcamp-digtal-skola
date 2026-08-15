@@ -1,6 +1,6 @@
-# API Automation Testing Suite - Sesi 6 Homework
+# API Automation Testing Suite - Season 6 Homework
 
-Repository ini berisi skrip pengujian otomatis (*API Test Automation*) untuk platform **Belajar Bareng API** menggunakan **Mocha**, **Chai**, dan **Ajv Schema Validator**.
+This repository contains automated test scripts (*API Test Automation*) for the **Belajar Bareng API** platform using **Mocha**, **Chai**, and **Ajv Schema Validator**.
 
 📂 **Direct Link to Test Suite:** [Homework Test Directory](./tests/homework)
 
