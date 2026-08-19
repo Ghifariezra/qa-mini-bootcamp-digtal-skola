@@ -62,9 +62,26 @@ The automation framework development and test scenarios are structured based on 
 ├── sesi5/            # Git & Manual API Testing Practice
 ├── sesi6/            # 🎯 API Testing Automation Suite (Mocha, Chai, Ajv)
 ├── sesi7/            # Automation & Performance Testing Practices
+├── sesi8/            # 🌐 Web UI E2E Automation Suite (Selenium, POM) — Git Submodule
 ├── .gitignore
 ├── LICENSE           # Exclusive Copyright License
 └── README.md
+```
+
+---
+
+## 📥 Cloning This Repository
+
+This repository uses a **Git submodule** for `sesi8` (linked to its own repository: [belajar-bareng-automation](https://github.com/Ghifariezra/belajar-bareng-automation)). Clone with submodules included:
+
+```bash
+git clone --recurse-submodules https://github.com/Ghifariezra/qa-mini-bootcamp-digtal-skola.git
+```
+
+Already cloned without submodules? Pull them in with:
+
+```bash
+git submodule update --init --recursive
 ```
 
 ---
@@ -79,6 +96,7 @@ The automation framework development and test scenarios are structured based on 
 | **Session 5** | Git Version Control & Manual API Testing | [Go to Session 5](./sesi5) |
 | **Session 6** | 🎯 API Automation Testing Suite (Mocha, Chai, Ajv) | [Go to Session 6](./sesi6) |
 | **Session 7** | Automation & Performance Testing | [Go to Session 7](./sesi7) |
+| **Session 8** | 🌐 Web UI E2E Automation (Selenium WebDriver, Page Object Model) — *submodule, own repo* | [Go to Session 8](./sesi8) |
 
 ---
 
