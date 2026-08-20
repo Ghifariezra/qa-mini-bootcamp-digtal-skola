@@ -16,24 +16,24 @@ export const usersData = {
         valid: [
             {
                 username: 'Ahooyyy',
-                age: "25"
+                age: 25 
             },
         ],
         invalid: [
             {
                 username: 'AssoooyyyBangetttt',
-                age: 25
+                age: "25"
             },
         ],
         withLengthMoreThen256: [
             {
-                username: 'asdasdasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddadsdaaddasadadadsadsadsaddsaasdadsadsadsads',
+                username: 'a'.repeat(256),
                 age: 25
             },
         ],
         withLengthMoreThen255: [
             {
-                username: 'asdasdasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddadsdaaddaasdsadasda',
+                username: 'a'.repeat(255),
                 age: 25
             },
         ],

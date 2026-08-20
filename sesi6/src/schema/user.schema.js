@@ -66,7 +66,7 @@ const addUserSchema = {
             "type": "string"
         },
         "age": {
-            "type": "string"
+            "type": "number"
         },
         "message": {
             "type": "string"

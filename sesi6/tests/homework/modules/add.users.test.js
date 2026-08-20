@@ -41,8 +41,6 @@ export default function runAddUsersTests() {
             this.invalidResponse = getInvalidResponse;
             this.lessThanResponse = getLessThanResponse;
             this.moreThanResponse = getMoreThanResponse;
-
-            console.log("Valid Response:", this.response.data); // -> Valid Response: { status: 400, message: 'Age must be numeric, not text!' }
         });
 
         describe("Verify system successfully creates a user and returns complete user data when valid payload is provided", function () {
@@ -65,10 +63,10 @@ export default function runAddUsersTests() {
             });
         });
 
-        describe("Verify system rejects user creation when 'age' field is sent as a number instead of a string", function () {
+        describe("Verify system rejects user creation when 'age' field is sent as text instead of a number", function () {
             it("should return valid body response", async function () {
                 assert.strictEqual(this.invalidResponse.status, 400);
-                assert.strictEqual(this.invalidResponse.data.message, "Invalid data type for 'age' field. Expected a string.");
+                assert.strictEqual(this.invalidResponse.data.message, "Age must be numeric, not text!");
             });
         });
 
