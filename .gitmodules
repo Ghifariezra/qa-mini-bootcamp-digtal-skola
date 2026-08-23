@@ -1,3 +1,6 @@
 [submodule "sesi8"]
 	path = sesi8
 	url = https://github.com/Ghifariezra/belajar-bareng-automation.git
+[submodule "sesi10"]
+	path = sesi10
+	url = https://github.com/Ghifariezra/sauce-demo-automation.git
