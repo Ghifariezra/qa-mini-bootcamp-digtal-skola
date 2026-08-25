@@ -26,6 +26,7 @@ This repository contains software test automation scripts, hands-on software tes
 * **Performance Testing:** JMeter (Load Testing)
 * **Version Control System:** Git, GitHub
 * **Test Reporting:** Mochawesome
+* **Visual Regression Testing:** canvas, pixelmatch
 
 ---
 
@@ -63,6 +64,7 @@ The automation framework development and test scenarios are structured based on 
 ├── sesi6/            # 🎯 API Testing Automation Suite (Mocha, Chai, Ajv)
 ├── sesi7/            # Automation & Performance Testing Practices
 ├── sesi8/            # 🌐 Web UI E2E Automation Suite (Selenium, POM) — Git Submodule
+├── sesi10/           # 🌐 Web UI E2E Automation v2 (Selenium, POM, Visual Regression) — Git Submodule
 ├── .gitignore
 ├── LICENSE           # Exclusive Copyright License
 └── README.md
@@ -96,7 +98,8 @@ git submodule update --init --recursive
 | **Session 5** | Git Version Control & Manual API Testing | [Go to Session 5](./sesi5) |
 | **Session 6** | 🎯 API Automation Testing Suite (Mocha, Chai, Ajv) | [Go to Session 6](./sesi6) |
 | **Session 7** | Automation & Performance Testing | [Go to Session 7](./sesi7) |
-| **Session 8** | 🌐 Web UI E2E Automation (Selenium WebDriver, Page Object Model) — *submodule, own repo* | [Go to Session 8](./sesi8) |
+| **Session 8** | 🌐 Web UI E2E Automation (Selenium WebDriver, Page Object Model) — *submodule, own repo* | [Go to Session 8](https://github.com/Ghifariezra/belajar-bareng-automation.git) |
+| **Session 10** | 🌐 Web UI E2E Automation v2 — SauceDemo Login + Visual Regression (Selenium WebDriver, POM, cross-browser, canvas+pixelmatch) — *submodule, own repo* | [Go to Session 10](https://github.com/Ghifariezra/sauce-demo-automation.git) |
 
 ---
 
