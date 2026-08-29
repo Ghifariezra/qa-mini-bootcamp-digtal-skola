@@ -65,6 +65,7 @@ The automation framework development and test scenarios are structured based on 
 ├── sesi7/            # Automation & Performance Testing Practices
 ├── sesi8/            # 🌐 Web UI E2E Automation Suite (Selenium, POM) — Git Submodule
 ├── sesi10/           # 🌐 Web UI E2E Automation v2 (Selenium, POM, Visual Regression) — Git Submodule
+├── sesi11/           # 📱 Mobile E2E Automation Suite (Appium, WebdriverIO) — Git Submodule
 ├── .gitignore
 ├── LICENSE           # Exclusive Copyright License
 └── README.md
@@ -74,7 +75,13 @@ The automation framework development and test scenarios are structured based on 
 
 ## 📥 Cloning This Repository
 
-This repository uses a **Git submodule** for `sesi8` (linked to its own repository: [belajar-bareng-automation](https://github.com/Ghifariezra/belajar-bareng-automation)). Clone with submodules included:
+This repository uses **Git submodules** for `sesi8`, `sesi10`, and `sesi11`, each linked to its own repository:
+
+- [belajar-bareng-automation](https://github.com/Ghifariezra/belajar-bareng-automation) → `sesi8`
+- [sauce-demo-automation](https://github.com/Ghifariezra/sauce-demo-automation) → `sesi10`
+- [appium-mobile-test-automation](https://github.com/Ghifariezra/appium-mobile-test-automation) → `sesi11`
+
+Clone with submodules included:
 
 ```bash
 git clone --recurse-submodules https://github.com/Ghifariezra/qa-mini-bootcamp-digtal-skola.git
@@ -100,6 +107,7 @@ git submodule update --init --recursive
 | **Session 7** | Automation & Performance Testing | [Go to Session 7](./sesi7) |
 | **Session 8** | 🌐 Web UI E2E Automation (Selenium WebDriver, Page Object Model) — *submodule, own repo* | [Go to Session 8](https://github.com/Ghifariezra/belajar-bareng-automation.git) |
 | **Session 10** | 🌐 Web UI E2E Automation v2 — SauceDemo Login + Visual Regression (Selenium WebDriver, POM, cross-browser, canvas+pixelmatch) — *submodule, own repo* | [Go to Session 10](https://github.com/Ghifariezra/sauce-demo-automation.git) |
+| **Session 11** | 📱 Mobile E2E Automation — Belajar Bareng & SauceLabs My Demo App (Appium, WebdriverIO, Mocha, Allure) — *submodule, own repo* | [Go to Session 11](https://github.com/Ghifariezra/appium-mobile-test-automation.git) |
 
 ---
 

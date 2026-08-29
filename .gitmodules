@@ -4,3 +4,6 @@
 [submodule "sesi10"]
 	path = sesi10
 	url = https://github.com/Ghifariezra/sauce-demo-automation.git
+[submodule "sesi11"]
+	path = sesi11
+	url = https://github.com/Ghifariezra/appium-mobile-test-automation.git
